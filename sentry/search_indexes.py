@@ -6,16 +6,15 @@ sentry.search_indexes
 :license: BSD, see LICENSE for more details.
 """
 
-import haystack
-from haystack.indexes import *
-from haystack.sites import SearchSite
-
 from sentry.conf import settings
 from sentry.utils import to_unicode
 from sentry.models import GroupedMessage
 
 if settings.SEARCH_ENGINE:
     # Ensure we stop here if we havent configure Sentry to work under haystack
+    import haystack
+    from haystack.indexes import *
+    from haystack.sites import SearchSite
 
     backend = haystack.load_backend(settings.SEARCH_ENGINE)
 
